@@ -75,6 +75,11 @@ addNote(NoteModel note) {
 /////////////////////////////////////
 بعد كده اعمل ال provider 
 fe el main
-
+MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AddNoteCubit(),
+        )
+      ],
 /////////////////////////////////////
 

@@ -57,6 +57,8 @@ Hive.registerAdapter(NoteModelAdapter());
 
 وال NoteModelAdapter() 
 جايه من الملف اللي عملتله generate
+/////////////////////////////////////
+
 
 
 

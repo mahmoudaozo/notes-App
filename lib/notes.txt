@@ -82,8 +82,9 @@ MultiBlocProvider(
         )
       ],
 /////////////////////////////////////
+اعمل بقا bloc BlocConsumer للحته اللي عاوز اشتغل فيها بالبلوك
 
-لما اجي استخدم الmodel progress hud 
+لما اجي استخدم ال model progress hud 
 لازم اشوف انا بعمل load ولا لاء
 وعلي اساسه بغير قيمه المتغير ال 
  ModalProgressHUD(
@@ -95,4 +96,49 @@ MultiBlocProvider(
                  ModalProgressHUD(
                 inAsyncCall: state is AddNotesLoading ? true : false,
                 child: AddNoteForm());
+
+/////////////////////////////////////////
+اعمل ال bloc observer 
+اروح اعمل ملف واعمل implements
+BlocObserver لل 
+وبعد كده اعرض التغيير 
+وبعد كده استدعيها في ال main بره 
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class SimpleBlocObserver implements BlocObserver {
+  @override
+  void onChange(BlocBase bloc, Change change) {
+    // TODO: implement onChange
+    debugPrint('Change =$change');
+  }
+
+  @override
+  void onClose(BlocBase bloc) {
+    // TODO: implement onClose
+  }
+
+  @override
+  void onCreate(BlocBase bloc) {
+    // TODO: implement onCreate
+  }
+
+  @override
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
+    // TODO: implement onError
+  }
+
+  @override
+  void onEvent(Bloc bloc, Object? event) {
+    // TODO: implement onEvent
+  }
+
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+    // TODO: implement onTransition
+  }
+}
+والاستدعاء هيكون
+  Bloc.observer =SimpleBlocObserver();
+
 

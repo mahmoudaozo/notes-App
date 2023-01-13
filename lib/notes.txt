@@ -24,3 +24,26 @@ await Hive.openBox(knotesBox);
 عملتها متغير عشان هستخدمه في كذا حته 
 const knotesBox =  'notes_box';
 //////////////////////////////////////////////////////////////////////
+ملحوظه لو هنشئ متغير مش final
+
+
+value?.isEmpty معني السطر ده لو مش ب نلل شوفهالي هي فاضيه ولا لاء 
+لو بي نلل نفذلي اللي بعد علامتين الاستفهام
+
+1-هعمل ال validate علي ال 
+form الاول 
+  final GlobalKey<FormState> formKey = GlobalKey();
+
+2-انشئ   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+عشان اظهرلو رساله لو دخل حاجه غلط 
+
+
+value?.isEmpty معني السطر ده لو مش ب نلل شوفهالي هي فاضيه ولا لاء 
+لو بي نلل نفذلي اللي بعد علامتين الاستفهام
+
+
+
+
+
+
+

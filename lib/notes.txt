@@ -83,3 +83,16 @@ MultiBlocProvider(
       ],
 /////////////////////////////////////
 
+لما اجي استخدم الmodel progress hud 
+لازم اشوف انا بعمل load ولا لاء
+وعلي اساسه بغير قيمه المتغير ال 
+ ModalProgressHUD(
+                inAsyncCall: true : false,
+                عندي كذا طريقه عشان اغير قيمته 
+                ممكن احطله متغير فوق واغيره علي حسب ال state 
+                او احطه في ال cubit وبعد كده استدعيه 
+                ياما اعمل السؤال في نفس السطر زي كده 
+                 ModalProgressHUD(
+                inAsyncCall: state is AddNotesLoading ? true : false,
+                child: AddNoteForm());
+

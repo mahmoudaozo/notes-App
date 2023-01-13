@@ -59,9 +59,22 @@ Hive.registerAdapter(NoteModelAdapter());
 جايه من الملف اللي عملتله generate
 /////////////////////////////////////
 
+عملنا ال logic بتاعنا اللي هو 
+addNote(NoteModel note) {
+    emit(AddNotesLoading());
+    try {
+      var notesBox = Hive.box<NoteModel>(knotesBox);
+      print(notesBox);
 
+      emit(AddNotesSuccess());
+    } catch (e) {
+      AddNotesFailuer(e.toString());
+    }
+  }
 
+/////////////////////////////////////
+بعد كده اعمل ال provider 
+fe el main
 
-
-
+/////////////////////////////////////
 

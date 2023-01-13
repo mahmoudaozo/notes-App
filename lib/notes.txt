@@ -47,9 +47,16 @@ value?.isEmpty معني السطر ده لو مش ب نلل شوفهالي هي 
 
 /////////////////////////////////////
 
+هعمل ال add cubit 
 
 
+/////////////////////////////////////
+هعمل register adabtor
+احط في ال main
+Hive.registerAdapter(NoteModelAdapter());
 
+وال NoteModelAdapter() 
+جايه من الملف اللي عملتله generate
 
 
 

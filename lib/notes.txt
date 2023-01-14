@@ -180,16 +180,50 @@ var note = NoteModel(
 
 
 
+//////////////////+//////////////////////////////////////
+حل مشكله ال ModalProgressHUD 
+ان لو بيلف هيبوظ الشكل ويغير المقاسات 
+لحل المشكله ياما اخلي fixed height لل 
+لل bottom sheet 
+من خلال اعمل wrab ليها ب sized box
 
 
+الحل الافضل اخلي ال button
+ هو اللي يتلف فيه 
+
+هكذا 
+
+child: isLoading
+              ? SizedBox(
+                  height: 24,
+                  width: 24,
+                  child: CircularProgressIndicator(
+                    color: Colors.black,
+                  ),
+                )
+              : Text(
+                  'Add',
+
+وبكده اقد اعمل bloc builder علي الذرار 
+وعلي حسب ال state 
+تبقا ب true or false 
+
+////////////////////////////////////////////////////////////
+الفرق بين ال لاbuilder and consumer 
+
+اbuilder
+بيعمل re build for UI
+
+consumer
+بيعمل re build for UI
+و بينفذ شويه اوامر برضو علي حسب ال state
+
+bloc listener بقا بيعمل ليسن بس وينفذ اوامر 
+
+//////////////////////////////////////////////////////////////
 
 
-
-
-
-
-
-
-
-
-
+AbsorbPointer
+بستخدمه عشان ال user ميقدرش يعمل حاجه في ال trxt form field 
+وانا بعمل loading
+ للامر يعني يقفله 

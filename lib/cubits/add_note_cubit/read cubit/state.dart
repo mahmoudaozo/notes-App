@@ -4,7 +4,7 @@ abstract class ReadNoteStates {}
 
 class ReadNotesInitial extends ReadNoteStates {}
 
-class ReadNotesLoading extends ReadNoteStates {}
+// class ReadNotesLoading extends ReadNoteStates {}
 
 class ReadNotesSuccess extends ReadNoteStates {
 //لو مش هباصي البيانات في حتت بعيده استقبلها هنا
@@ -13,8 +13,8 @@ class ReadNotesSuccess extends ReadNoteStates {
   ReadNotesSuccess(this.notes);
 }
 
-class ReadNotesFailuer extends ReadNoteStates {
-  final String errMsg;
+// class ReadNotesFailuer extends ReadNoteStates {
+//   final String errMsg;
 
-  ReadNotesFailuer(this.errMsg);
-}
+//   ReadNotesFailuer(this.errMsg);
+// }

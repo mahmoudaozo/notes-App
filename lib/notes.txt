@@ -142,3 +142,42 @@ class SimpleBlocObserver implements BlocObserver {
   Bloc.observer =SimpleBlocObserver();
 
 
+//////////////////////
+ملحوظه HIVE 
+مش بتخزن OBJ 
+لازم اعمله TYPE adabtor 
+عشان اقدر اخذنه 
+وبرضو مش بتخزن color 
+لازم اعمله TYPE adabtor 
+
+/////////////////////////////////
+بعد ما عملت ال form validate 
+وكتبت if (formKey.currentState!.validate()) {
+                formKey.currentState!.save();
+ابدأ بقا اخذن في ال الموديل بتاعي هكذا 
+var note = NoteModel(
+                  title: title!,
+                  subTitle: subtitle!,
+                  date: DateTime.now().toString(),
+                  color: Colors.blue.value,
+                );
+                BlocProvider.of<AddNoteCubit>(context).addNote(note);
+                وبعد كده احط الحاجه فب ال موديل احطها في ال blocProvider 
+
+
+//////////////////+
+مينفعش احط SingleChildScrollView 
+فوق ModalProgressHUD
+لان كده مش هيقدر يحدد ال مكان اللي هيلف فيه 
+
+
+
+
+
+
+
+
+
+
+
+

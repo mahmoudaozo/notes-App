@@ -227,3 +227,31 @@ AbsorbPointer
 بستخدمه عشان ال user ميقدرش يعمل حاجه في ال trxt form field 
 وانا بعمل loading
  للامر يعني يقفله 
+//////////////////////////////////////////////////////////////
+      resizeToAvoidBottomInset: false,
+
+
+بستخدم السطر ده مع ال Scaffold 
+لو عاوز الشاشه ميتغيرش حجمها لو الكيبورد ظهر فهديها false 
+عشان الاساسي عندا ب true 
+//////////////////////////////////////////////////////////////
+عشان اغير ارتفاع ال bottom sheet مع الكيبورد هعمل كلاتي 
+1- هدي ال bottom sheet padding  from button 
+علي حسب ارتفاع الكيبور علي حسب نوه التليفون 
+من السطر ده 
+                bottom:MediaQuery.of(context).viewInsets.bottom ,
+
+بس لو عملت كده بس مش هيطلع ال bottom shet 
+كله لفوق بل هيعمل scroll ليه بس في المساحه بتاعته 
+عشان اخليه يطلع كلو 
+احط في ال showModalBottomSheet
+احط السطر ده  
+showModalBottomSheet(
+            isScrollControlled: true,
+
+
+
+
+
+
+

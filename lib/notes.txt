@@ -270,3 +270,8 @@ showModalBottomSheet(
 
 
 ////////////////////////////////////////////////
+عايزه بعد  ما يعمل ال مسح يروح يحدث الشاشه عن طريق ان اعمل 
+re read للجزء بتاع القرايه 
+هكذا 
+note.delete();
+ BlocProvider.of<ReadNoteCubit>(context).ReadNote();

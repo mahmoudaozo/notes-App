@@ -1,0 +1,58 @@
+//عشان اعمل موديل من ال hive
+//خعمل كالاتي
+//1-هحط قبل الكلاس id يكون مفيش زيه
+//@HiveType(typeId: 0)
+//بعد كده قبل كل متغير هعملو id [رضو ب]
+//@HiveField(الرقم)
+//بعد كده هكتب سطر عشان اعمل جينيريت للكود السطر هو
+//part 'note_models.g.dart';
+//بكتب نفس اسم الصفحه اللي انا بعملها الكود .g.dart
+//بعد كده بروح الcmd
+//واكتب الاتي
+//flutter packages pub run build_runner build
+//https://docs.hivedb.dev/#/custom-objects/generate_adapter
+
+
+/////////////////////
+بعد كده اعمل استدعاء ليها في الملف الاساسي ال main 
+هكذا 
+await Hive.initFlutter();
+بس الاحظ عشان احط السطر ده الزم اتاكد اني عملت import صح 
+import 'package:hive_flutter/adapters.dart';
+بعد كده اعمل البوكس اللي هيتخذن فيه كل حاجه 
+await Hive.openBox(knotesBox);
+عملتها متغير عشان هستخدمه في كذا حته 
+const knotesBox =  'notes_box';
+//////////////////////////////////////////////////////////////////////
+ملحوظه لو هنشئ متغير مش final
+
+
+value?.isEmpty معني السطر ده لو مش ب نلل شوفهالي هي فاضيه ولا لاء 
+لو بي نلل نفذلي اللي بعد علامتين الاستفهام
+
+1-هعمل ال validate علي ال 
+form الاول 
+  final GlobalKey<FormState> formKey = GlobalKey();
+
+2-انشئ   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+عشان اظهرلو رساله لو دخل حاجه غلط 
+
+
+value?.isEmpty معني السطر ده لو مش ب نلل شوفهالي هي فاضيه ولا لاء 
+لو بي نلل نفذلي اللي بعد علامتين الاستفهام
+
+
+
+
+
+/////////////////////////////////////
+
+
+
+
+
+
+
+
+
+

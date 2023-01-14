@@ -1,0 +1,257 @@
+//عشان اعمل موديل من ال hive
+//خعمل كالاتي
+//1-هحط قبل الكلاس id يكون مفيش زيه
+//@HiveType(typeId: 0)
+//بعد كده قبل كل متغير هعملو id [رضو ب]
+//@HiveField(الرقم)
+//بعد كده هكتب سطر عشان اعمل جينيريت للكود السطر هو
+//part 'note_models.g.dart';
+//بكتب نفس اسم الصفحه اللي انا بعملها الكود .g.dart
+//بعد كده بروح الcmd
+//واكتب الاتي
+//flutter packages pub run build_runner build
+//https://docs.hivedb.dev/#/custom-objects/generate_adapter
+
+
+/////////////////////
+بعد كده اعمل استدعاء ليها في الملف الاساسي ال main 
+هكذا 
+await Hive.initFlutter();
+بس الاحظ عشان احط السطر ده الزم اتاكد اني عملت import صح 
+import 'package:hive_flutter/adapters.dart';
+بعد كده اعمل البوكس اللي هيتخذن فيه كل حاجه 
+await Hive.openBox(knotesBox);
+عملتها متغير عشان هستخدمه في كذا حته 
+const knotesBox =  'notes_box';
+//////////////////////////////////////////////////////////////////////
+ملحوظه لو هنشئ متغير مش final
+
+
+value?.isEmpty معني السطر ده لو مش ب نلل شوفهالي هي فاضيه ولا لاء 
+لو بي نلل نفذلي اللي بعد علامتين الاستفهام
+
+1-هعمل ال validate علي ال 
+form الاول 
+  final GlobalKey<FormState> formKey = GlobalKey();
+
+2-انشئ   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+عشان اظهرلو رساله لو دخل حاجه غلط 
+
+
+value?.isEmpty معني السطر ده لو مش ب نلل شوفهالي هي فاضيه ولا لاء 
+لو بي نلل نفذلي اللي بعد علامتين الاستفهام
+
+
+
+
+
+/////////////////////////////////////
+
+هعمل ال add cubit 
+
+
+/////////////////////////////////////
+هعمل register adabtor
+احط في ال main
+Hive.registerAdapter(NoteModelAdapter());
+
+وال NoteModelAdapter() 
+جايه من الملف اللي عملتله generate
+/////////////////////////////////////
+
+عملنا ال logic بتاعنا اللي هو 
+addNote(NoteModel note) {
+    emit(AddNotesLoading());
+    try {
+      var notesBox = Hive.box<NoteModel>(knotesBox);
+      print(notesBox);
+
+      emit(AddNotesSuccess());
+    } catch (e) {
+      AddNotesFailuer(e.toString());
+    }
+  }
+
+/////////////////////////////////////
+بعد كده اعمل ال provider 
+fe el main
+MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AddNoteCubit(),
+        )
+      ],
+/////////////////////////////////////
+اعمل بقا bloc BlocConsumer للحته اللي عاوز اشتغل فيها بالبلوك
+
+لما اجي استخدم ال model progress hud 
+لازم اشوف انا بعمل load ولا لاء
+وعلي اساسه بغير قيمه المتغير ال 
+ ModalProgressHUD(
+                inAsyncCall: true : false,
+                عندي كذا طريقه عشان اغير قيمته 
+                ممكن احطله متغير فوق واغيره علي حسب ال state 
+                او احطه في ال cubit وبعد كده استدعيه 
+                ياما اعمل السؤال في نفس السطر زي كده 
+                 ModalProgressHUD(
+                inAsyncCall: state is AddNotesLoading ? true : false,
+                child: AddNoteForm());
+
+/////////////////////////////////////////
+اعمل ال bloc observer 
+اروح اعمل ملف واعمل implements
+BlocObserver لل 
+وبعد كده اعرض التغيير 
+وبعد كده استدعيها في ال main بره 
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class SimpleBlocObserver implements BlocObserver {
+  @override
+  void onChange(BlocBase bloc, Change change) {
+    // TODO: implement onChange
+    debugPrint('Change =$change');
+  }
+
+  @override
+  void onClose(BlocBase bloc) {
+    // TODO: implement onClose
+  }
+
+  @override
+  void onCreate(BlocBase bloc) {
+    // TODO: implement onCreate
+  }
+
+  @override
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
+    // TODO: implement onError
+  }
+
+  @override
+  void onEvent(Bloc bloc, Object? event) {
+    // TODO: implement onEvent
+  }
+
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+    // TODO: implement onTransition
+  }
+}
+والاستدعاء هيكون
+  Bloc.observer =SimpleBlocObserver();
+
+
+//////////////////////
+ملحوظه HIVE 
+مش بتخزن OBJ 
+لازم اعمله TYPE adabtor 
+عشان اقدر اخذنه 
+وبرضو مش بتخزن color 
+لازم اعمله TYPE adabtor 
+
+/////////////////////////////////
+بعد ما عملت ال form validate 
+وكتبت if (formKey.currentState!.validate()) {
+                formKey.currentState!.save();
+ابدأ بقا اخذن في ال الموديل بتاعي هكذا 
+var note = NoteModel(
+                  title: title!,
+                  subTitle: subtitle!,
+                  date: DateTime.now().toString(),
+                  color: Colors.blue.value,
+                );
+                BlocProvider.of<AddNoteCubit>(context).addNote(note);
+                وبعد كده احط الحاجه فب ال موديل احطها في ال blocProvider 
+
+
+//////////////////+
+مينفعش احط SingleChildScrollView 
+فوق ModalProgressHUD
+لان كده مش هيقدر يحدد ال مكان اللي هيلف فيه 
+//////////////////+//////////////////////////////////////
+ملحوظه وانا بفتح الصندوق في ال main لازم احدد نوع الموديول اللي هستخدمه 
+  await Hive.openBox<NoteModel>(knotesBox);
+
+
+//////////////////+//////////////////////////////////////
+لما اجي استخد ال bloc provider 
+احاول استخمه في مكانه لو بيخدم شاشه واحده لكن لو اكتبر من شاشه احطه في ال main 
+
+
+
+//////////////////+//////////////////////////////////////
+حل مشكله ال ModalProgressHUD 
+ان لو بيلف هيبوظ الشكل ويغير المقاسات 
+لحل المشكله ياما اخلي fixed height لل 
+لل bottom sheet 
+من خلال اعمل wrab ليها ب sized box
+
+
+الحل الافضل اخلي ال button
+ هو اللي يتلف فيه 
+
+هكذا 
+
+child: isLoading
+              ? SizedBox(
+                  height: 24,
+                  width: 24,
+                  child: CircularProgressIndicator(
+                    color: Colors.black,
+                  ),
+                )
+              : Text(
+                  'Add',
+
+وبكده اقد اعمل bloc builder علي الذرار 
+وعلي حسب ال state 
+تبقا ب true or false 
+
+////////////////////////////////////////////////////////////
+الفرق بين ال لاbuilder and consumer 
+
+اbuilder
+بيعمل re build for UI
+
+consumer
+بيعمل re build for UI
+و بينفذ شويه اوامر برضو علي حسب ال state
+
+bloc listener بقا بيعمل ليسن بس وينفذ اوامر 
+
+//////////////////////////////////////////////////////////////
+
+
+AbsorbPointer
+بستخدمه عشان ال user ميقدرش يعمل حاجه في ال trxt form field 
+وانا بعمل loading
+ للامر يعني يقفله 
+//////////////////////////////////////////////////////////////
+      resizeToAvoidBottomInset: false,
+
+
+بستخدم السطر ده مع ال Scaffold 
+لو عاوز الشاشه ميتغيرش حجمها لو الكيبورد ظهر فهديها false 
+عشان الاساسي عندا ب true 
+//////////////////////////////////////////////////////////////
+عشان اغير ارتفاع ال bottom sheet مع الكيبورد هعمل كلاتي 
+1- هدي ال bottom sheet padding  from button 
+علي حسب ارتفاع الكيبور علي حسب نوه التليفون 
+من السطر ده 
+                bottom:MediaQuery.of(context).viewInsets.bottom ,
+
+بس لو عملت كده بس مش هيطلع ال bottom shet 
+كله لفوق بل هيعمل scroll ليه بس في المساحه بتاعته 
+عشان اخليه يطلع كلو 
+احط في ال showModalBottomSheet
+احط السطر ده  
+showModalBottomSheet(
+            isScrollControlled: true,
+
+
+
+
+
+
+

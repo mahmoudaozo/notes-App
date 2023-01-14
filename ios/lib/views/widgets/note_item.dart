@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/models/note_models.dart';
 import 'package:note_app/views/edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({Key? key}) : super(key: key);
+  const NoteItem({Key? key, required this.note}) : super(key: key);
+  final NoteModel note;
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +13,9 @@ class NoteItem extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) {
-            return const EditNoteView();
+            return EditNoteView(
+              note: note,
+            );
           }),
         );
       },

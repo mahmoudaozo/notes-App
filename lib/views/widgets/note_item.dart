@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/cubits/add_note_cubit/read%20cubit/cubit.dart';
 import 'package:note_app/models/note_models.dart';
 import 'package:note_app/views/edit_note_view.dart';
+import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NoteItem extends StatelessWidget {
   const NoteItem({Key? key, required this.note}) : super(key: key);
@@ -13,7 +16,7 @@ class NoteItem extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) {
-            return const EditNoteView();
+            return EditNoteView(note: note);
           }),
         );
       },
@@ -48,6 +51,7 @@ class NoteItem extends StatelessWidget {
               trailing: IconButton(
                 onPressed: () {
                   note.delete();
+                  BlocProvider.of<ReadNoteCubit>(context).ReadNote();
                 },
                 icon: const Icon(
                   Icons.delete,

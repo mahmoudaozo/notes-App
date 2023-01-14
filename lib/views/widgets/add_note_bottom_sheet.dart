@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/cubits/add_note_cubit/cubit.dart';
+import 'package:note_app/cubits/add_note_cubit/read%20cubit/cubit.dart';
 import 'package:note_app/cubits/add_note_cubit/state.dart';
 import 'package:note_app/views/widgets/add_note_form.dart';
 import 'package:note_app/views/widgets/custom_text_field.dart';
@@ -22,6 +23,7 @@ class AddNoteBottomSheet extends StatelessWidget {
           }
           if (state is AddNotesSuccess) {
             Navigator.pop(context);
+            BlocProvider.of<ReadNoteCubit>(context).ReadNote();
           }
         },
         builder: (context, state) {

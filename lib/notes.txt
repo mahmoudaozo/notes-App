@@ -275,3 +275,26 @@ re read للجزء بتاع القرايه
 هكذا 
 note.delete();
  BlocProvider.of<ReadNoteCubit>(context).ReadNote();
+
+//////////////////////////////////////////////////////////
+
+
+edit notes
+
+1-ابعت الموديل اللي موجود جوه في صفحه التعديل 
+لكل الصفحات اللي بعدها عشان اقدر استخدمها 
+2- لو هستخدم متغير جوه StatelessWidget 
+لازم احولها ل stateful widgets
+حتي لو مش هعمل update علي ال state
+
+3-بعد كده تخزن الحجات اللي هتتكتب في ال formtext field 
+في متغيرات لوحدها 
+4-بعد كده عند الضغط علي علامه الصح اشوف كل حاجه اطحتلها قيم ولا لاء 
+لو لاء حط القيم القديمه 
+زي كده 
+ //لو الحاجه مدخلش فيها قيمه خدلي الللي كانت في الموديل 
+              widget.note.title = title ?? widget.note.title;
+            بعد كده اعمل sava
+  widget.note.title = title ?? widget.note.title;
+              widget.note.subTitle = content ?? widget.note.subTitle;
+              widget.note.save();          

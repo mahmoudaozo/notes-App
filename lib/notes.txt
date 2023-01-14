@@ -260,3 +260,13 @@ showModalBottomSheet(
 
 
 
+//تغيير ال تاريخ
+                    var currentDate = DateTime.now();
+                    // var currentDateFormated =
+                    //     DateFormat.yMMMMEEEEd().format(currentDate);
+                    var currentDateFormated =
+                        DateFormat('dd/mm/yyyy').format(currentDate);
+
+
+
+////////////////////////////////////////////////

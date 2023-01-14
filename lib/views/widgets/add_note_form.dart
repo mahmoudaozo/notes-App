@@ -6,6 +6,7 @@ import 'package:note_app/views/widgets/custom_text_field.dart';
 
 import 'custom_button.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class AddNoteForm extends StatefulWidget {
   AddNoteForm({super.key});
@@ -54,10 +55,19 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 onTap: () {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
+
+                    //تغيير ال تاريخ
+                    var currentDate = DateTime.now();
+                    // var currentDateFormated =
+                    //     DateFormat.yMMMMEEEEd().format(currentDate);
+                    var currentDateFormated =
+                        DateFormat('dd/mm/yyyy').format(currentDate);
+
                     var note = NoteModel(
                       title: title!,
                       subTitle: subtitle!,
-                      date: DateTime.now().toString(),
+                      // date: DateTime.now().toString(),
+                      date: currentDateFormated,
                       color: Colors.blue.value,
                     );
                     BlocProvider.of<AddNoteCubit>(context).addNote(note);
